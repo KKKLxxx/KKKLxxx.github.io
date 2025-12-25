@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Docker部署RocketMQ参考官网：https:&#x2F;&#x2F;rocketmq.apache.ac.cn&#x2F;docs&#x2F;quickStart&#x2F;02quickstartWithDocker&#x2F; 一、拉取镜像1docker pull apache&#x2F;rocketmq:5.3.2  二、为容器创建共享网络RocketMQ 涉及多个服务，需要多个容器。创建 Docker 网络有助于容器间通信 1docker netw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Docker部署RocketMQ参考官网：https:&#x2F;&#x2F;rocketmq.apache.ac.cn&#x2F;docs&#x2F;quickStart&#x2F;02quickstartWithDocker&#x2F; 一、拉取镜像1docker pull apache&#x2F;rocketmq:5.3.2  二、为容器创建共享网络RocketMQ 涉及多个服务，需要多个容器。创建 Docker 网络有助于容器间通信 1docker netw">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-12-25T06:19:51.134Z">
+<meta property="article:modified_time" content="2025-07-10T13:59:08.837Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://example.com/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-12-25T06:19:51.134Z",
+  "dateModified": "2025-07-10T13:59:08.837Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">Hexo</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-25T06:19:51.134Z" title="Created 2025-12-25 14:19:51">2025-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-10T13:59:08.837Z" title="Updated 2025-07-10 21:59:08">2025-07-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Docker部署RocketMQ"><a href="#Docker部署RocketMQ" class="headerlink" title="Docker部署RocketMQ"></a>Docker部署RocketMQ</h1><p>参考官网：<a target="_blank" rel="noopener" href="https://rocketmq.apache.ac.cn/docs/quickStart/02quickstartWithDocker/">https://rocketmq.apache.ac.cn/docs/quickStart/02quickstartWithDocker/</a></p>
+<h2 id="一、拉取镜像"><a href="#一、拉取镜像" class="headerlink" title="一、拉取镜像"></a>一、拉取镜像</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull apache/rocketmq:5.3.2</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、为容器创建共享网络"><a href="#二、为容器创建共享网络" class="headerlink" title="二、为容器创建共享网络"></a>二、为容器创建共享网络</h2><p>RocketMQ 涉及多个服务，需要多个容器。创建 Docker 网络有助于容器间通信</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create rocketmq</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、启动-NameServer"><a href="#三、启动-NameServer" class="headerlink" title="三、启动 NameServer"></a>三、启动 NameServer</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Start NameServer</span><br><span class="line">docker run -d --name rmqnamesrv -p 9876:9876 --network rocketmq apache/rocketmq:5.3.2 sh mqnamesrv</span><br><span class="line"></span><br><span class="line"># Verify if NameServer started successfully</span><br><span class="line">docker logs -f rmqnamesrv</span><br></pre></td></tr></table></figure>
+
+<p>当我们从 <code>namesrv.log</code> 中看到 <strong>The Name Server boot success..</strong> 时，表示 NameServer 已经成功启动（按Ctrl+C退出）</p>
+<h2 id="四、启动-Broker-和-Proxy"><a href="#四、启动-Broker-和-Proxy" class="headerlink" title="四、启动 Broker 和 Proxy"></a>四、启动 Broker 和 Proxy</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Configure the broker&#x27;s IP address</span><br><span class="line">echo &quot;brokerIP1=127.0.0.1&quot; &gt; broker.conf</span><br><span class="line"># 注意，若需要将MQ部署到远程服务器，并使本地程序可以访问的话，需要将127.0.0.1改为服务器对应的公网IP</span><br><span class="line"># 如echo &quot;brokerIP1=115.190.8.109&quot; &gt; broker.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Start the Broker and Proxy</span><br><span class="line">docker run -d \</span><br><span class="line">--name rmqbroker \</span><br><span class="line">--network rocketmq \</span><br><span class="line">-p 10912:10912 -p 10911:10911 -p 10909:10909 \</span><br><span class="line">-p 8080:8080 -p 8081:8081 \</span><br><span class="line">-e &quot;NAMESRV_ADDR=rmqnamesrv:9876&quot; \</span><br><span class="line">-v ./broker.conf:/home/rocketmq/rocketmq-5.3.2/conf/broker.conf \</span><br><span class="line">apache/rocketmq:5.3.2 sh mqbroker --enable-proxy \</span><br><span class="line">-c /home/rocketmq/rocketmq-5.3.2/conf/broker.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Verify if Broker started successfully</span><br><span class="line">docker exec -it rmqbroker bash -c &quot;tail -n 10 /home/rocketmq/logs/rocketmqlogs/proxy.log&quot;</span><br></pre></td></tr></table></figure>
+
+<p>当我们从 <code>proxy.log</code> 中看到 <strong>The broker[brokerName,ip:port] boot success..</strong> 时，表示 Broker 已经成功启动</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/">http://example.com/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/25/Docker/Docker%E9%95%9C%E5%83%8F%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%8E%A8%E9%80%81/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">Docker镜像的创建与推送这里演示了如何创建一个可运行自己应用的CentOS7镜像，并将其推送到远程仓库。在CentOS7容器中需要手动安装MySQL与Redis（因为Docker无法嵌套运行，或者是我不会嵌套运行） 1、在Linux服务器中安装Docker在其他文章中介绍过，略 2、获取并运行CentOS获取即docker pull centos:centos7.9.2009  这里指定了版本号为7.9 运行即docker run -d --privileged -p 8080:8080 -p 3306:3306 -p 6379:6379 eeb6 /usr/sbin/init 注意一定要加--privileged选项，否则会有一些命令无法运行 指定了3个端口映射，分别是tomcat、mysql、redis的端口 eeb6是我这里的镜像ID /usr/sbin/init使得能够在容器内执行systemctl命令 由于守护式启动，需要再通过docker exec -it 容器ID /bin/bash进入（不可直接-it交互式启动） 3、在CentOS容器中安装Docker同1，...</div></div></div></a><a class="pagination-related" href="/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2Kafka/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">Docker部署Kafka参考官网：https://kafka.apache.org/quickstart 一、拉取镜像1docker pull bitnami/kafka:4.0.0  官方镜像应为apache&#x2F;kafka，但实际使用发现apache&#x2F;kafka难以配置和运行，遂改用bitnami&#x2F;kafka 经搜索，bitnami应是一个比apache版本更加便于部署运行的版本，虽然难以深度优化，但更适合初学者 二、运行镜像12345678910111213docker run \  --name kafka \  -p 9092:9092 \  -p 9093:9093 \  -e KAFKA_CFG_PROCESS_ROLES=broker,controller \  -e KAFKA_CFG_NODE_ID=1 \  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@115.190.8.109:9093 \  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E9%83%A8%E7%BD%B2RocketMQ"><span class="toc-number">1.</span> <span class="toc-text">Docker部署RocketMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">1.1.</span> <span class="toc-text">一、拉取镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E5%AE%B9%E5%99%A8%E5%88%9B%E5%BB%BA%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.</span> <span class="toc-text">二、为容器创建共享网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%90%AF%E5%8A%A8-NameServer"><span class="toc-number">1.3.</span> <span class="toc-text">三、启动 NameServer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%AF%E5%8A%A8-Broker-%E5%92%8C-Proxy"><span class="toc-number">1.4.</span> <span class="toc-text">四、启动 Broker 和 Proxy</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/25/Docker/Docker%E9%95%9C%E5%83%8F%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%8E%A8%E9%80%81/" title="Untitled">Untitled</a><time datetime="2025-12-25T06:19:51.137Z" title="Created 2025-12-25 14:19:51">2025-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2RocketMQ/" title="Untitled">Untitled</a><time datetime="2025-12-25T06:19:51.134Z" title="Created 2025-12-25 14:19:51">2025-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/25/Docker/Docker%E9%83%A8%E7%BD%B2Kafka/" title="Untitled">Untitled</a><time datetime="2025-12-25T06:19:51.132Z" title="Created 2025-12-25 14:19:51">2025-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/25/Docker/Docker%E7%AE%80%E4%BB%8B/" title="Untitled">Untitled</a><time datetime="2025-12-25T06:19:51.129Z" title="Created 2025-12-25 14:19:51">2025-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/25/Docker/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Untitled">Untitled</a><time datetime="2025-12-25T06:19:51.127Z" title="Created 2025-12-25 14:19:51">2025-12-25</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
